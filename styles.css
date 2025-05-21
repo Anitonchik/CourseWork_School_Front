@@ -1,19 +1,56 @@
 @font-face {
-    font-family: 'Lato';
-    src: url('../fonts/lato/Lato-Light.eot');
-    src: local('Lato Light'), local('Lato-Light'),
-        url('../fonts/lato/Lato-Light.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/lato/Lato-Light.woff2') format('woff2'),
-        url('../fonts/lato/Lato-Light.woff') format('woff'),
-        url('../fonts/lato/Lato-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
+    font-family: 'MilligramBold';
+    src: url("/fonts/MilligramMacro-Bold.ttf");
 }
 
-.parent-font {
-    font-family: 'Lato', sans-serif;
-    font-size: 24px;
+@font-face {
+    font-family: 'Milligram';
+    src: url("/fonts/MilligramText-Book.ttf");
+}
+
+@font-face {
+    font-family: 'HandWrite';
+    src: url("/fonts/SNFBSTRD_\ handwrite.ttf");
+}
+
+.milligram-beige-font-bold {
+    font-family: 'MilligramBold', sans-serif;
     color: #f9ffe9
+}
+
+.milligram-green-font-bold {
+    font-family: 'MilligramBold', sans-serif;
+    color: #c9e956
+}
+
+.milligram-dark-font-bold {
+    font-family: 'MilligramBold', sans-serif;
+    color: #313131
+}
+
+.milligram-beige-font {
+    font-family: 'Milligram', sans-serif;
+    color: #f9ffe9
+}
+
+.milligram-green-font {
+    font-family: 'Milligram', sans-serif;
+    color: #c9e956
+}
+
+.milligram-dark-font {
+    font-family: 'Milligram', sans-serif;
+    color: #313131
+}
+
+.handWrite-beige-font {
+    font-family: 'HandWrite', sans-serif;
+    color: #f9ffe9
+}
+
+.handWrite-green-font {
+    font-family: 'HandWrite', sans-serif;
+    color: #c9e956
 }
 
 .children-font {
@@ -101,14 +138,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px 50px 50px 50px;
+    padding: 10px 50px 10px 50px;
     width: 700px;
 }
 
 .register-block div {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0px 20px 0px;
+    margin: 5px 0px 5px 0px;
 }
 
 .register-block input {

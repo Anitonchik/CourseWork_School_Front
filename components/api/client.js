@@ -1,38 +1,18 @@
-const URL = "http://localhost:5174/";
+import axios from "axios";
 
-const makeRequest = async (path, params, vars, method = "GET", data = null) => {
-    try {
-        const requestParams = params ? `?${params}` : "";
-        const pathVariables = vars ? `/${vars}` : "";
-        const options = { method };
-        const hasBody = (method === "POST" || method === "PUT") && data;
-        if (hasBody) {
-            options.headers = { "Content-Type": "application/json;charset=utf-8" };
-            options.body = JSON.stringify(data);
-        }
-        const response = await fetch(`${URL}${path}${pathVariables}${requestParams}`, options);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response?.status}`);
-        }
+const URL = "http://localhost:5281/";
 
-        const json = await response.json();
-        console.debug(path, json);
-        return json;
-    } catch (error) {
-        if (error instanceof SyntaxError) {
-            throw new Error("There was a SyntaxError", error);
-        } else {
-            throw new Error("There was an error", error);
-        }
+export const fetchRegistration = async (userData) => {
+    try{
+        var response = await axios.post(`http://localhost:5281/api/userloginaccaunt/Register`, userData, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        alert("ну как будто прошло")
     }
-};
-
-export const getAllItems = (path, params) => makeRequest(path, params);
-
-export const getItem = (path, id) => makeRequest(path, null, id);
-
-export const createItem = (path, data) => makeRequest(path, null, null, "POST", data);
-
-export const updateItem = (path, id, data) => makeRequest(path, null, id, "PUT", data);
-
-export const deleteItem = (path, id) => makeRequest(path, null, id, "DELETE");
+    catch (err) {
+        alert("ОШИБКА: " + err);
+    }
+    
+}
