@@ -1,5 +1,5 @@
 
-import {fetchRegistration} from "./components/api/client"
+import {fetchRegistration} from "../components/api/client"
 
 document.addEventListener("DOMContentLoaded", () => {
     const likeButton = document.getElementById("registrationButton");
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     registrationButton.addEventListener('click', async (e) => {
         
-        e.preventDefault(); // предотвратить перезагрузку страницы
+        e.preventDefault();
 
         const fio = document.getElementById('fio').value;
         const mail = document.getElementById('email').value;
@@ -44,8 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Данные к отправке:", data);
 
         try {
-            fetchRegistration(data);
-            alert("ddvsvvdvdvdvds")
+            let responce = fetchRegistration(data);
+            if (responce.Ok) {
+                //window.location.href = "MainMenu.html";
+            }
+            
         } catch (err) {
             console.error("Ошибка запроса:", err);
             alert("Ошибка сети");

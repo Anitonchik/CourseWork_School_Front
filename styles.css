@@ -38,6 +38,11 @@
     color: #c9e956
 }
 
+.milligram-purple-font {
+    font-family: 'Milligram', sans-serif;
+    color: #968ad4
+}
+
 .milligram-dark-font {
     font-family: 'Milligram', sans-serif;
     color: #313131
@@ -53,16 +58,9 @@
     color: #c9e956
 }
 
-.children-font {
-    font-family: 'Lato', sans-serif;
-    font-size: 24px;
-    color: #c9e956
-}
-
-.dark-font {
-    font-family: 'Lato', sans-serif;
-    font-size: 24px;
-    color: #313131
+.handWrite-purple-font {
+    font-family: 'HandWrite', sans-serif;
+    color: #968ad4
 }
 
 .dark-font-less {
@@ -187,6 +185,26 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Затемненный фон */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
 }
 
 
