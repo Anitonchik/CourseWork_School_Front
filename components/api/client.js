@@ -35,7 +35,9 @@ export const fetchLogin = async (userData) => {
         });
         console.log(response);
         if (response.status === 200) {
-            fetchGetUser(userData.UserLogin);
+            let resData = new UsersData(response.data.id, response.data.userLogin, response.data.userFIO, response.data.accessToken);
+            sessionStorage.setItem("usersData", JSON.stringify(resData));
+            console.log(resData)
             window.location.href = "MainMenu.html";
         }
         return response;
@@ -66,8 +68,8 @@ export const fetchGetUser = async (userLogin) => {
         });
         console.log(response);
         if (response.status === 200) {
-            usersData = new UsersData(response.data.id, response.data.login, response.data.fio);
-            sessionStorage.setItem("usersData", JSON.stringify(usersData));
+            let resData = new UsersData(response.data.id, response.data.login, response.data.fio);
+            sessionStorage.setItem("usersData", JSON.stringify(resData));
         }
         return response;
     }

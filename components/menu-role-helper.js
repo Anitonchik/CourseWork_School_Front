@@ -5,12 +5,11 @@ export default class MenuHeader extends HTMLElement {
 
     connectedCallback() {
         const usersData = JSON.parse(sessionStorage.getItem("usersData"));
-        alert("connectedCallback " + usersData.fio)
+        alert("menu " + usersData.id)
         this.createHeader(usersData.fio);
     }
 
     async createHeader(fio) {
-        alert("createHeader fio: " + fio)
         const mainDiv = document.createElement('div');
         mainDiv.className = 'd-flex flex-row gap-3';
         

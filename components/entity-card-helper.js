@@ -57,3 +57,5 @@ const createButton = (iconClass, text) => {
 
     return button;
 };
+
+export {createCardEntity};
