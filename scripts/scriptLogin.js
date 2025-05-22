@@ -12,12 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const UserLogin = document.getElementById('login').value;
         const password = document.getElementById('password').value;
-        
-        const role = document.querySelector('input[name="role"]:checked').value;
 
         const data = {
             UserLogin,
-            role,
+            role: "storekeeper",
             password
         };
 

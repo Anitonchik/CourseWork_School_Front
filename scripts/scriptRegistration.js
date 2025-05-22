@@ -26,8 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const login = document.getElementById('login').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirm-password').value;
-        
-        const role = document.querySelector('input[name="role"]:checked').value;
+
         if (password !== confirmPassword) {
             alert("Пароли не совпадают!");
             return;
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = {
             fio,
             login,
-            role,
+            role: "storekeeper",
             password,
             mail
         };

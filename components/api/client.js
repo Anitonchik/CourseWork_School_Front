@@ -1,6 +1,9 @@
+import UsersData from "../user-data.js";
 import axios from "axios";
 
 const URL = "http://localhost:5281/";
+
+let usersData = null;
 
 export const fetchRegistration = async (userData) => {
     try{
@@ -11,8 +14,7 @@ export const fetchRegistration = async (userData) => {
         });
         console.log(response);
         if (response.status === 200) {
-            console.log("client")
-            alert("client")
+            usersData = new UsersData()
             window.location.href = "MainMenu.html";
         }
         return response;
