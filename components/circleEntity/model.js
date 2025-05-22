@@ -6,7 +6,7 @@ export default class CircleModel {
     }
 
     async getAll(userId, token) {
-        alert("MODEL getall model token " + token);
+        //alert("MODEL getall model token " + token);
         try {
             var response = await axios.get(`https://localhost:7235/api/circles/getallrecords`, {
                 params: { storekeeperId: userId }, 
@@ -27,34 +27,26 @@ export default class CircleModel {
     } 
 
 
-    /*async createPost(url, text) {
+    async createCircle(userId, token, data) {
         try {
-            var response = await axios.post(`https://localhost:7235/api/circles/register`,  {
+            alert("model")
+            var response = await axios.post(`https://localhost:7235/api/circles/register`, data, {
                 headers: {
+                    "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
                 }
             });
             if (response.status === 200) {
                 this.data = response.data;
-                return response.data;
+                return response;
             }
         }
         catch (error) {
             alert("ОШИБКА " + error)
         }
-        const post = await createItem(PATH, {
-            "userId": "3",
-            "profileAvatar": "profile/ava4.jpg",
-            "profileName": "name 1",
-            "postContentImage": `${url}`,
-            "postContentText": `${text}`,
-            "like": "false"
-        })
-
-        return post;
     }
 
-    async updatePost(postId, url, text) {
+    /*async updatePost(postId, url, text) {
         const post = updateItem(PATH, postId, {
             "userId": "3",
             "profileAvatar": "profile/ava4.jpg",

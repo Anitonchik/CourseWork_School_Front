@@ -15,7 +15,28 @@
         </div>
         <menu-header></menu-header>
     </div>
-    <circles-container></circles-container>
+
+    <div>
+        <div class="container container-white-card" style="width: 400px;">
+            <div >
+                <div class="d-flex flex-row" style="margin: 15px 0px 15px 0px;">
+                    <div class="">Название кружка</div>
+                    <textarea id="textareaName" class="textarea-entities" name="userNameTextarea"></textarea>
+                </div>
+                <div class="d-flex flex-row" style="margin: 15px 0px 15px 0px;">
+                    <div class="">Описание</div>
+                    <textarea id="textareaDesc" class="textarea-entities" name="userAvatarTextarea"></textarea>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button id="createCircleButton" class="entities-button">Создать кружок</button> 
+            </div>
+        </div>
+        
+
+        <circles-container></circles-container>
+    </div>
 </body>
 <script type="module" src="./scripts/scriptCircle.js"></script>
 </html>

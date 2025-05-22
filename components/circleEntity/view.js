@@ -8,15 +8,15 @@ export default class CircleView {
     } 
 
     render(circleController) {
-        alert("view")
         if (!this.data) return;
+        let type = "circle";
 
         createCardEntity(
             circleController,
             this.data.id,
-            type = "circle",
-            this.data.CircleName,
-            this.data.Description
+            type,
+            this.data.circleName,
+            this.data.description
         );
     }
 

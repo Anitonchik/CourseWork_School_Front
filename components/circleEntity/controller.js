@@ -19,32 +19,44 @@ export default class CircleController extends HTMLElement {
         this.usersData = JSON.parse(sessionStorage.getItem("usersData"));
         console.log(this.usersData);
         this.userId = this.usersData.id; 
-        alert("connectedCallback userId " + this.userId);
+        this.token = this.usersData.token;
+        //alert("connectedCallback userId " + this.userId);
         this.loadCircles(this.userId);
     }
 
     async loadCircles() {
-        alert("controller loadcircles token = " + this.usersData.token);
+        //alert("controller loadcircles token = " + this.usersData.token);
         const circles = await this.model.getAll(this.userId, this.usersData.token);
-        console.log(circles);
+        //console.log(circles);
         this.viewModels = [];
         this.innerHTML = "";
 
-        /*circles.forEach(circleData => {
+        circles.forEach(circleData => {
+            //console.log(circleData);
             const viewModel = new CircleView(circleData, this);
             viewModel.render(this);
             this.viewModels.push(viewModel);
-        });*/
+        });
     }
 
-    /*async createPost(url, text) {
-        await this.model.createPost(url, text);
-        const viewModel = new PostViewModel(postData, this);
-        viewModel.render(this);
-        this.viewModels.push(viewModel);
+    //тут поменять на id worker
+    async createCircle(name, description) {
+        let usersData = JSON.parse(sessionStorage.getItem("usersData"));
+        alert("controller name " + name);
+        const data = {
+            StorekeeperId: usersData.id,
+            CircleName: name,
+            Description: description
+        };
+
+        let resp = await this.model.createCircle(usersData.id, usersData.token, data);
+            const viewModel = new CircleView(data, this);
+            viewModel.render(this);
+            this.viewModels.push(viewModel);
+        
     }
 
-    async updatePost(postId, url, text) {
+    /*async updatePost(postId, url, text) {
         const index = this.viewModels.findIndex(vm => vm.postData.id == postId);
 
         if (index !== -1) {

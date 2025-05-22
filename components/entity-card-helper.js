@@ -1,9 +1,11 @@
 function createCardEntity(controller, entityId, type, name, description) {
+    console.log(name)
     const entityContainer = document.createElement("div");
+    entityContainer.className = "container-white-card";
     entityContainer.id = `${type}-${entityId}`;
 
-    container.appendChild(createTextBlock("Название:", "Рисование"));
-    container.appendChild(createTextBlock("Описание:", "Дети рисуют, все счастливы"));
+    entityContainer.appendChild(createTextBlock("Название:", name));
+    entityContainer.appendChild(createTextBlock("Описание:", description));
 
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "d-flex gap-3 mt-3";
@@ -11,9 +13,9 @@ function createCardEntity(controller, entityId, type, name, description) {
     buttonContainer.appendChild(createButton("bi bi-pencil", "Изменить"));
     buttonContainer.appendChild(createButton("bi bi-trash", "Удалить"));
 
-    container.appendChild(buttonContainer);
+    entityContainer.appendChild(buttonContainer);
 
-    controller.appendChild(container)
+    controller.appendChild(entityContainer)
 }
 
 const createTextBlock = (label, text) => {
@@ -24,7 +26,8 @@ const createTextBlock = (label, text) => {
     labelDiv.textContent = label;
 
     const textDiv = document.createElement("div");
-    textDiv.className = "dark-font";
+    textDiv.className = "handWrite-dark-font";
+    textDiv.style.fontSize = "24px";
     textDiv.textContent = text;
 
     wrapper.appendChild(labelDiv);
