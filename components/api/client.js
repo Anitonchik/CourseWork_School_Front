@@ -14,7 +14,7 @@ export const fetchRegistration = async (userData) => {
         });
         console.log(response);
         if (response.status === 200) {
-            usersData = new UsersData()
+            usersData = new UsersData(userData.login, userData.fio);
             window.location.href = "MainMenu.html";
         }
         return response;
@@ -35,8 +35,7 @@ export const fetchLogin = async (userData) => {
         });
         console.log(response);
         if (response.status === 200) {
-            console.log("client")
-            alert("client")
+            usersData = new UsersData(userData.login, userData.fio);
             window.location.href = "MainMenu.html";
         }
         return response;
