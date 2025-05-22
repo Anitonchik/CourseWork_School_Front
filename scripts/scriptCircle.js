@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const name = textareaName.value.trim();
         const description = textareaDesc.value.trim();
         controller.createCircle(name, description);
+        textareaName.value = "";
+        textareaDesc.value = "";
 
     });
 });

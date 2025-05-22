@@ -20,13 +20,11 @@ export default class CircleView {
         );
     }
 
-    /*async loadPost(postId) {
+    async loadCircle(data, controller) {
         try {
-            const post = await getItem("posts", postId);
-            this.data = post;
-            this.comments = post.comments || [];
-            this.render();
-            return post;
+            this.data = data;
+            this.render(controller);
+            return circle;
         } catch (error) {
             console.error("Ошибка при загрузке поста:", error);
         }

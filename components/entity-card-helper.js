@@ -10,12 +10,21 @@ function createCardEntity(controller, entityId, type, name, description) {
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "d-flex gap-3 mt-3";
 
-    buttonContainer.appendChild(createButton("bi bi-pencil", "Изменить"));
-    buttonContainer.appendChild(createButton("bi bi-trash", "Удалить"));
+    const updateButton = createButton("bi bi-pencil", "Изменить");
+    
+
+    const deleteButton = createButton("bi bi-trash", "Удалить");
+    deleteButton.addEventListener("click", () => {
+        alert("удаление")
+        controller.deleteCircle(entityId)
+    });
+    
+    buttonContainer.appendChild(updateButton);
+    buttonContainer.appendChild(deleteButton);
 
     entityContainer.appendChild(buttonContainer);
 
-    controller.appendChild(entityContainer)
+    controller.prepend(entityContainer)
 }
 
 const createTextBlock = (label, text) => {

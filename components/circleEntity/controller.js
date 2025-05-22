@@ -25,14 +25,12 @@ export default class CircleController extends HTMLElement {
     }
 
     async loadCircles() {
-        //alert("controller loadcircles token = " + this.usersData.token);
         const circles = await this.model.getAll(this.userId, this.usersData.token);
-        //console.log(circles);
+        console.log(circles)
         this.viewModels = [];
         this.innerHTML = "";
 
         circles.forEach(circleData => {
-            //console.log(circleData);
             const viewModel = new CircleView(circleData, this);
             viewModel.render(this);
             this.viewModels.push(viewModel);
@@ -50,10 +48,29 @@ export default class CircleController extends HTMLElement {
         };
 
         let resp = await this.model.createCircle(usersData.id, usersData.token, data);
-            const viewModel = new CircleView(data, this);
-            viewModel.render(this);
-            this.viewModels.push(viewModel);
+        /*const viewModel = new CircleView(data, this);
+        viewModel.render(this);
+        this.viewModels.push(viewModel);*/
+
+        await this.loadCircles();
         
+    }
+
+    async deleteCircle(circleId) {
+        let usersData = JSON.parse(sessionStorage.getItem("usersData"));
+
+        if (circleId <= 0) {
+            return;
+        }
+
+       const index = this.viewModels.findIndex(vm => vm.data.id == circleId);
+
+        if (index !== -1) {
+            this.viewModels[index].remove();
+            this.viewModels.splice(index, 1);
+        }
+        
+        await this.model.delete(usersData.id, usersData.token, circleId);
     }
 
     /*async updatePost(postId, url, text) {

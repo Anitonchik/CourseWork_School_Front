@@ -46,6 +46,23 @@ export default class CircleModel {
         }
     }
 
+    async delete(storekeeperId, token, circleId) {
+        try{
+            const response = await axios.delete(`https://localhost:7235/api/circles/${circleId}`, {
+                params: {
+                    storekeeperId: storekeeperId
+                },
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            });
+        }
+        catch (error) {
+            alert("ОШИБКА " + error)
+        }
+    }
+
     /*async updatePost(postId, url, text) {
         const post = updateItem(PATH, postId, {
             "userId": "3",
