@@ -1,5 +1,6 @@
 export default class UsersData { 
-    constructor (login, fio) {
+    constructor (id, login, fio) {
+        this.id = id;
         this.login = login;
         this.fio = fio;
     }

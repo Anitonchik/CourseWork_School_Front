@@ -3,6 +3,7 @@ import axios from "axios";
 
 const URL = "http://localhost:5281/";
 
+/*---------------------------------------------------------------------------------------------------------------------*/
 let usersData = null;
 
 export const fetchRegistration = async (userData) => {
@@ -14,9 +15,7 @@ export const fetchRegistration = async (userData) => {
         });
         console.log(response);
         if (response.status === 200) {
-            usersData = new UsersData(userData.login, userData.fio);
-            alert("client userData fio " + userData.fio);
-            sessionStorage.setItem("usersData", JSON.stringify(userData));
+            fetchGetUser(userData.login);
             window.location.href = "MainMenu.html";
         }
         return response;
@@ -29,15 +28,14 @@ export const fetchRegistration = async (userData) => {
 
 export const fetchLogin = async (userData) => {
     try{
-        alert("зашли в клиент")
-        var response = await axios.post(`https://localhost:7235/api/userloginaccaunt/login`, userData, {
+        var response = await axios.post(`http://localhost:5281/api/userloginaccaunt/login`, userData, {
             headers: {
                 "Content-Type": "application/json"
             }
         });
         console.log(response);
         if (response.status === 200) {
-            usersData = new UsersData(userData.login, userData.fio);
+            fetchGetUser(userData.UserLogin);
             window.location.href = "MainMenu.html";
         }
         return response;
@@ -53,6 +51,52 @@ export const fetchLogin = async (userData) => {
             console.error("Ошибка запроса:", error.message);
             alert("Ошибка сети, проверьте соединение.");
         }
+    }    
+}
+
+/*тут нужно поменять на worker*/
+export const fetchGetUser = async (userLogin) => {
+    try{
+        alert("fetchGetUser " + userLogin)
+        var response = await axios.get(`http://localhost:5281/api/Storekeepers/GetUserByLogin`, {
+            params: { login: userLogin }, 
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        console.log(response);
+        if (response.status === 200) {
+            usersData = new UsersData(response.data.id, response.data.login, response.data.fio);
+            sessionStorage.setItem("usersData", JSON.stringify(usersData));
+        }
+        return response;
     }
-    
+    catch (error) {
+        if (error.response) {
+            console.error(`Ошибка ${error.response.status}: ${error.response.statusText}`);
+            
+            if (error.response.status === 500) {
+                alert("нет пользователя")
+            }
+        } else {
+            console.error("Ошибка запроса:", error.message);
+            alert("Ошибка сети, проверьте соединение.");
+        }
+    }    
+}
+
+/*---------------------------------------------------------------------------------------------------------------------*/
+
+export const fetchCirclesGetAllRecords = async () => {
+    //const usersData = JSON.parse(sessionStorage.getItem("usersData"));
+    try {
+        var response = await axios.post(`https://localhost:7235/api/circles/getallrecords`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    }
+    catch (error) {
+        alert("ОШИБКА: " + error);
+    }
 }
