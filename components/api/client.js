@@ -15,6 +15,8 @@ export const fetchRegistration = async (userData) => {
         console.log(response);
         if (response.status === 200) {
             usersData = new UsersData(userData.login, userData.fio);
+            alert("client userData fio " + userData.fio);
+            sessionStorage.setItem("usersData", JSON.stringify(userData));
             window.location.href = "MainMenu.html";
         }
         return response;

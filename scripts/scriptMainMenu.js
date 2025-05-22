@@ -1,6 +1,9 @@
-import MenuEntityes from "../components/mainMenuEntityes/menu-entityes-controller.js"
+import MenuHeader from "../components/menu-role-helper.js"
+console.log("scriptMainMenu.js загружен!");
 
 document.addEventListener("DOMContentLoaded", () => {
-    const controller = new MenuEntityes(1, false);
-    controller.loadPosts(1);
+    /*alert("загрузка main")
+    const usersData = JSON.parse(sessionStorage.getItem("usersData"));
+    alert("scriptMainMenu user fio " + usersData.fio);
+    const controller = new MenuHeader(usersData.fio);*/
 });
