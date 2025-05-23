@@ -1,3 +1,6 @@
+import {takeDataToUpdateCircleInTextarea} from '../scripts/scriptCircle.js'
+import { takeDataToUpdateMaterialInTextarea } from '../scripts/scriptMaterial.js';
+
 function createCardEntity(controller, entityId, type, name, description) {
     console.log(name)
     const entityContainer = document.createElement("div");
@@ -11,12 +14,27 @@ function createCardEntity(controller, entityId, type, name, description) {
     buttonContainer.className = "d-flex gap-3 mt-3";
 
     const updateButton = createButton("bi bi-pencil", "Изменить");
+    updateButton.addEventListener("click", () => {
+        if (type === "circle") {
+            takeDataToUpdateCircleInTextarea(controller, entityId, name, description);
+        }
+        else if (type === "material") {
+            takeDataToUpdateMaterialInTextarea(controller, entityId, name, description);
+        }
+        document.getElementById("fields").scrollIntoView({
+            behavior: "smooth"
+          });
+    });
     
 
     const deleteButton = createButton("bi bi-trash", "Удалить");
     deleteButton.addEventListener("click", () => {
-        alert("удаление")
-        controller.deleteCircle(entityId)
+        if (type === "circle") {
+            controller.deleteCircle(entityId)
+        }
+        else if (type === "material") {
+            controller.deleteMaterial(entityId)
+        }
     });
     
     buttonContainer.appendChild(updateButton);

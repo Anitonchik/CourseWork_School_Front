@@ -1,10 +1,10 @@
-import CircleModel from "./model.js"
-import CircleView from "./view.js"
+import MaterialModel from "./model.js"
+import MaterialView from "./view.js"
 
-export default class CircleController extends HTMLElement {
+export default class MaterialController extends HTMLElement {
     constructor () {
         super()
-        this.model = new CircleModel();
+        this.model = new MaterialModel();
         this.viewModels = [];
         this.usersData = null;
     }
@@ -21,80 +21,79 @@ export default class CircleController extends HTMLElement {
         this.userId = this.usersData.id; 
         this.token = this.usersData.token;
         //alert("connectedCallback userId " + this.userId);
-        this.loadCircles(this.userId);
+        this.loadMaterials(this.userId);
     }
 
-    async loadCircles() {
-        const circles = await this.model.getAll(this.userId, this.usersData.token);
-        console.log(circles)
+    async loadMaterials() {
+        let usersData = JSON.parse(sessionStorage.getItem("usersData"));
+        const materials = await this.model.getAll(this.userId, usersData.token);
+        console.log(materials)
         this.viewModels = [];
         this.innerHTML = "";
 
-        circles.forEach(circleData => {
-            const viewModel = new CircleView(circleData, this);
+        materials.forEach(materialData => {
+            const viewModel = new MaterialView(materialData, this);
             viewModel.render(this);
             this.viewModels.push(viewModel);
         });
     }
 
     //тут поменять на id worker
-    async createCircle(name, description) {
+    async createMaterial(name, description) {
         let usersData = JSON.parse(sessionStorage.getItem("usersData"));
         alert("controller name " + name);
         const data = {
             StorekeeperId: usersData.id,
-            CircleName: name,
+            MaterialName: name,
             Description: description
         };
 
-        let resp = await this.model.createCircle(usersData.id, usersData.token, data);
-        /*const viewModel = new CircleView(data, this);
-        viewModel.render(this);
-        this.viewModels.push(viewModel);*/
+        let resp = await this.model.createMaterial(usersData.id, usersData.token, data);
 
-        await this.loadCircles();
+        await this.loadMaterials();
         
     }
 
-    async updateCircle(circleId, name, desc) {
+    async updateMaterial(MaterialId, name, desc) {
         let usersData = JSON.parse(sessionStorage.getItem("usersData"));
 
-        /*const index = this.viewModels.findIndex(vm => vm.data.id == circleId);
+        /*const index = this.viewModels.findIndex(vm => vm.data.id == MaterialId);
         alert("index " + index)
         if (index !== -1) {
             const viewModel = this.viewModels[index];
 
-            viewModel.data.circleName = name;
+            viewModel.data.MaterialName = name;
             viewModel.data.description = desc;
         }*/
 
         const data = {
-            Id: circleId,
+            Id: MaterialId,
             StorekeeperId: usersData.id,
-            CircleName: name,
+            MaterialName: name,
             Description: desc
         };
 
         await this.model.update(usersData.token, data);
-        await this.loadCircles();
+        await this.loadMaterials();
     }
 
-    async deleteCircle(circleId) {
+    async deleteMaterial(MaterialId) {
         let usersData = JSON.parse(sessionStorage.getItem("usersData"));
 
-        if (circleId <= 0) {
+        if (MaterialId <= 0) {
             return;
         }
 
-       const index = this.viewModels.findIndex(vm => vm.data.id == circleId);
+       const index = this.viewModels.findIndex(vm => vm.data.id == MaterialId);
 
         if (index !== -1) {
             this.viewModels[index].remove();
             this.viewModels.splice(index, 1);
         }
         
-        await this.model.delete(usersData.id, usersData.token, circleId);
+        await this.model.delete(usersData.id, usersData.token, MaterialId);
+        await this.viewModels[index].remove();
     }
 }
 
-customElements.define("circles-container", CircleController);
+customElements.define("materials-container", MaterialController);

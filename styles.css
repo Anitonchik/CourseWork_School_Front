@@ -246,6 +246,14 @@
     margin-top: 20px;
 }
 
+.headen-update{
+    display: none;
+}
+
+.headen-update.show{
+    display: flex;
+}
+
 
 /*main2*/
 :root {

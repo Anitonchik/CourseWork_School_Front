@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default class CircleModel { 
+export default class MaterialModel { 
     constructor() {
         this.data = [];
     }
@@ -8,7 +8,7 @@ export default class CircleModel {
     async getAll(userId, token) {
         //alert("MODEL getall model token " + token);
         try {
-            var response = await axios.get(`https://localhost:7235/api/circles/getallrecords`, {
+            var response = await axios.get(`https://localhost:7235/api/materials/getallrecords`, {
                 params: { storekeeperId: userId }, 
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -27,10 +27,11 @@ export default class CircleModel {
     } 
 
 
-    async createCircle(userId, token, data) {
+    async createMaterial(userId, token, data) {
+        alert(JSON.stringify(data))
         try {
             alert("model")
-            var response = await axios.post(`https://localhost:7235/api/circles/register`, data, {
+            var response = await axios.post(`https://localhost:7235/api/Materials/register`, data, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
@@ -49,7 +50,7 @@ export default class CircleModel {
     async update(token, data) {
         try {
             alert(JSON.stringify(data))
-            const response = await axios.put(`https://localhost:7235/api/circles/changeinfo`, JSON.stringify(data), {
+            const response = await axios.put(`https://localhost:7235/api/Materials/changeinfo`, JSON.stringify(data), {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
@@ -61,9 +62,9 @@ export default class CircleModel {
         }
     }
 
-    async delete(storekeeperId, token, circleId) {
+    async delete(storekeeperId, token, MaterialId) {
         try{
-            const response = await axios.delete(`https://localhost:7235/api/circles/${circleId}`, {
+            const response = await axios.delete(`https://localhost:7235/api/Materials/${MaterialId}`, {
                 params: {
                     storekeeperId: storekeeperId
                 },

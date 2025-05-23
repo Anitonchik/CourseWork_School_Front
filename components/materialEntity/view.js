@@ -1,40 +1,58 @@
 import { createCardEntity } from '../entity-card-helper.js'
 
-export default class CircleView {
+export default class MaterialView {
 
     constructor(data, parentElement) {
         this.data = data;
         this.parentDiv = parentElement;
     } 
 
-    render(circleController) {
+    render(MaterialController) {
         if (!this.data) return;
-        let type = "circle";
+        let type = "material";
 
         createCardEntity(
-            circleController,
+            MaterialController,
             this.data.id,
             type,
-            this.data.circleName,
+            this.data.materialName,
             this.data.description
         );
     }
 
-    async loadMaterials(data, controller) {
+    async loadMaterial(data, controller) {
         try {
             this.data = data;
             this.render(controller);
-            return circle;
+            return Material;
         } catch (error) {
             console.error("Ошибка при загрузке поста:", error);
         }
     }
 
+    async addComment(profileId, profileName, profileAvatar, commentContentText) {
+        const newComment = {
+            profileId,
+            postId: this.postId,
+            commentId: Date.now().toString(),
+            profileAvatar,
+            profileName,
+            commentContentText
+        };
 
-    async remove(id) {
-        const element = document.getElementById(`circle-${id}`);
-        if (element) {
-            element.remove();
+        try {
+            await createItem("comments", newComment);
+            this.comments.push(newComment);
+            this.render(); // перерисовываем пост с новым комментарием
+        } catch (error) {
+            console.error("Ошибка при добавлении комментария:", error);
+        }
+    }
+
+    async remove() {
+        const postElement = document.getElementById(`material-${this.data.id}`);
+        if (postElement) {
+            postElement.remove();
         }
     }
 
