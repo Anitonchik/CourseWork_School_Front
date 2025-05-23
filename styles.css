@@ -221,9 +221,8 @@
     border: 3px solid #313131d0;
     border-radius: 10px;   
     padding: 5px 5px 5px 5px;
-    width: 600px;
+    /*width: 600px;*/
     height: 50px;
-    margin-left: 70px;
     background: transparent; /*прозрачный*/
     box-sizing: border-box;
     color: #313131d0;
@@ -242,8 +241,6 @@
     color: #f9ffe9;
     margin-right: 10px;
     padding: 10px;
-    width: 370px;
-    margin-top: 20px;
 }
 
 .headen-update{

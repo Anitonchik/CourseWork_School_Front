@@ -16,34 +16,43 @@
         <menu-header></menu-header>
     </div>
 
-    <div>
+    <div class="d-flex flex-row justify-content-between">
         <div>
             <div class="container container-white-card" style="width: 400px;">
+                <p class="handWrite-purple-font d-flex justify-content-center" style="font-size: 25px;">Создать сущность</p>
                 <div id="fields">
-                    <div class="d-flex flex-row" style="margin: 15px 0px 15px 0px;">
+                    <div class="d-flex flex-row justify-content-between" style="margin: 10px 0px 10px 0px;">
                         <div class="">Название кружка</div>
                         <textarea id="textareaName" class="textarea-entities" name="userNameTextarea"></textarea>
                     </div>
-                    <div class="d-flex flex-row" style="margin: 15px 0px 15px 0px;">
+                    <div class="d-flex flex-row justify-content-between" style="margin: 10px 0px 10px 0px;">
                         <div class="">Описание</div>
                         <textarea id="textareaDesc" class="textarea-entities" name="userAvatarTextarea"></textarea>
                     </div>
                 </div>
 
                 <div class="text-center">
-                    <button id="createCircleButton" class="entities-button">Создать кружок</button> 
+                    <button id="createCircleButton" class="entities-button" style="width: 370px;">Создать кружок</button> 
                 </div>
 
                 <div class="text-center ">
-                    <button id="updateCircleButton" class="entities-button">Обновить кружок</button> 
+                    <button id="updateCircleButton" class="entities-button" style="width: 370px;">Обновить кружок</button> 
                 </div>
             </div>
-            <select id="multiSelect" multiple>
-                <option value="apple">Яблоко</option>
-                <option value="banana">Банан</option>
-                <option value="cherry">Вишня</option>
-                <option value="grape">Виноград</option>
-            </select>
+
+            <div class="container-white-card" style="width: 400px;">
+                <p class="handWrite-purple-font d-flex justify-content-center" style="font-size: 25px;">Создать связь</p>
+                <div class="d-flex flex-row justify-content-between">
+                    <div>
+                        <lessons-container></lessons-container>
+                    </div>
+                    <div>
+                        <p id="textareaName" class="textarea-entities d-flex justify-content-center align-items-center" name="userNameTextarea" style="width: 150px;"></p>
+                        <button id="createCircleButton" class="entities-button" style="width: 150px;">Связать</button> 
+                    </div>
+                </div>
+            </div>
+            
         </div>
         
 

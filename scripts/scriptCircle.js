@@ -1,14 +1,17 @@
 import CircleController from "../components/circleEntity/controller";
+import LessonController from "../components/lessonEntity/get-lessons-helper";
 
 const textareaName = document.getElementById("textareaName");
 const textareaDesc = document.getElementById("textareaDesc");
 
 let controller = null;
+let lessonController = null;
 let circleId = null;
 
 
 document.addEventListener("DOMContentLoaded", () => {
     controller = new CircleController();
+    lessonController = new LessonController();
 });
 
 document.addEventListener("DOMContentLoaded", () => {

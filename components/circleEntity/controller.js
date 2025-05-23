@@ -20,7 +20,6 @@ export default class CircleController extends HTMLElement {
         console.log(this.usersData);
         this.userId = this.usersData.id; 
         this.token = this.usersData.token;
-        //alert("connectedCallback userId " + this.userId);
         this.loadCircles(this.userId);
     }
 
