@@ -6,7 +6,6 @@ export default class CircleModel {
     }
 
     async getAll(userId, token) {
-        //alert("MODEL getall model token " + token);
         try {
             var response = await axios.get(`https://localhost:7235/api/circles/getallrecords`, {
                 params: { storekeeperId: userId }, 
@@ -29,7 +28,6 @@ export default class CircleModel {
 
     async createCircle(userId, token, data) {
         try {
-            alert("model")
             var response = await axios.post(`https://localhost:7235/api/circles/register`, data, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -48,7 +46,7 @@ export default class CircleModel {
 
     async update(token, data) {
         try {
-            alert(JSON.stringify(data))
+            //alert(JSON.stringify(data))
             const response = await axios.put(`https://localhost:7235/api/circles/changeinfo`, JSON.stringify(data), {
                 headers: {
                     "Authorization": `Bearer ${token}`,

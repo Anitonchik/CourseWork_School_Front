@@ -5,7 +5,6 @@ export default class MenuHeader extends HTMLElement {
 
     connectedCallback() {
         const usersData = JSON.parse(sessionStorage.getItem("usersData"));
-        alert("menu " + usersData.id)
         this.createHeader(usersData.fio);
     }
 

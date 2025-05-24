@@ -9,15 +9,15 @@
 </head>
 <body class="background">
     <div class="d-flex flex-row justify-content-between align-items-center">
-        <div class="d-flex flex-row gap-3">
+        <div class="d-flex flex-row gap-3 ms-5">
             <div class="milligram-beige-font-bold" style="font-size: 40px;">Школа</div>
             <div class="handWrite-green-font" style="font-size: 40px;">Опять учиться</div>
         </div>
-        <menu-header></menu-header>
+        <menu-header class="me-5"></menu-header>
     </div>
 
-    <div class="d-flex flex-row justify-content-between">
-        <div>
+    <div class="d-flex flex-row justify-content-between" style="height: 100vh;">
+        <div class="ms-5">
             <div class="container container-white-card" style="width: 400px;">
                 <p class="handWrite-purple-font d-flex justify-content-center" style="font-size: 25px;">Создать сущность</p>
                 <div id="fields">
@@ -40,23 +40,32 @@
                 </div>
             </div>
 
-            <div class="container-white-card" style="width: 400px;">
+            <div id="connectBlock" class="container-white-card" style="width: 400px;">
                 <p class="handWrite-purple-font d-flex justify-content-center" style="font-size: 25px;">Создать связь</p>
                 <div class="d-flex flex-row justify-content-between">
-                    <div>
+                    <div style="height: 50%;">
                         <lessons-container></lessons-container>
                     </div>
                     <div>
-                        <p id="textareaName" class="textarea-entities d-flex justify-content-center align-items-center" name="userNameTextarea" style="width: 150px;"></p>
-                        <button id="createCircleButton" class="entities-button" style="width: 150px;">Связать</button> 
+                        <p id="connectEntities" class="textarea-entities d-flex justify-content-center align-items-center" name="userNameTextarea" style="width: 150px;"></p>
+                        <button id="createConnectCircleButton" class="entities-button" style="width: 150px;">Связать</button> 
                     </div>
                 </div>
             </div>
             
         </div>
-        
 
-        <circles-container></circles-container>
+        <div class="d-flex flex-row gap-3">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 60px;">К</span>
+                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 60px;">О</span>
+                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 60px;">Ж</span>
+                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 60px;">У</span>
+                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 60px;">Р</span>
+                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 60px;">К</span>
+            </div>
+        <circles-container class="entites-list me-5"></circles-container>
+        </div>
     </div>
 </body>
 <script type="module" src="./scripts/scriptCircle.js"></script>

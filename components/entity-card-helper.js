@@ -1,5 +1,6 @@
 import {takeDataToUpdateCircleInTextarea} from '../scripts/scriptCircle.js'
 import { takeDataToUpdateMaterialInTextarea } from '../scripts/scriptMaterial.js';
+import {takeIdToConnectEntities} from '../scripts/scriptCircle.js'
 
 function createCardEntity(controller, entityId, type, name, description) {
     console.log(name)
@@ -39,6 +40,14 @@ function createCardEntity(controller, entityId, type, name, description) {
     
     buttonContainer.appendChild(updateButton);
     buttonContainer.appendChild(deleteButton);
+
+    if (type === "circle") {
+        const connectButton = createButton("bi bi-trash", "Связать");
+        connectButton.addEventListener("click", () => {
+            takeIdToConnectEntities(entityId, name);
+        });
+        buttonContainer.appendChild(connectButton);
+    }
 
     entityContainer.appendChild(buttonContainer);
 

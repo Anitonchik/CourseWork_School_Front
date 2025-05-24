@@ -63,6 +63,18 @@ export default class LessonController extends HTMLElement {
         return selected;
     };
 
+    async connectEntities() {
+        const selected = this.getSelectedValues();
+        let usersData = JSON.parse(sessionStorage.getItem("usersData"));
+        try {
+            var response = await axios.get(`https://localhost:7235/api/lessons/getwholerecords`, {
+                headers: {
+                    "Authorization": `Bearer ${usersData.token}`,
+                    "Content-Type": "application/json"
+                }
+            });
+    }
+
 
     
 }
