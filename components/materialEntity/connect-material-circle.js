@@ -1,18 +1,19 @@
 import axios from "axios";
 
-export default class LessonController extends HTMLElement {
+export default class MaterialCircleController extends HTMLElement {
     constructor () {
         super()
     }
 
     connectedCallback() {
-        this.loadLessons();
+        this.loadMaterials();
     }
 
-    async getLessons() {
+    async getMaterials() {
         let usersData = JSON.parse(sessionStorage.getItem("usersData"));
         try {
-            var response = await axios.get(`https://localhost:7235/api/lessons/getwholerecords`, {
+            var response = await axios.get(`https://localhost:7235/api/materials/getallrecords`, {
+                params: { storekeeperId: usersData.id },
                 headers: {
                     "Authorization": `Bearer ${usersData.token}`,
                     "Content-Type": "application/json"
@@ -29,12 +30,12 @@ export default class LessonController extends HTMLElement {
         }
     }
 
-    async loadLessons(){
-        const lessons = await this.getLessons();
+    async loadMaterials(){
+        const materials = await this.getMaterials();
 
         this.container = document.createElement("div");
 
-        lessons.forEach(lessonData => {
+        materials.forEach(materialData => {
             const block = document.createElement("div");
             block.classList = ("d-flex flex-row gap-2")
 
@@ -42,14 +43,14 @@ export default class LessonController extends HTMLElement {
 
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
-            checkbox.value = lessonData.lessonName;
-            checkbox.setAttribute("data-lesson-id", `${lessonData.id}`);
-            checkbox.id = `chk-${lessonData.id}`;
+            checkbox.value = materialData.materialName;
+            checkbox.setAttribute("data-material-id", `${materialData.id}`);
+            checkbox.id = `chk-${materialData.id}`;
 
             const label = document.createElement("label");
             label.setAttribute("for", checkbox.id);
             label.classList = "text-nowrap";
-            label.textContent = lessonData.lessonName;
+            label.textContent = materialData.materialName;
             label.style.marginLeft = "5px";
             label.style.width = "60px";
             
@@ -58,7 +59,7 @@ export default class LessonController extends HTMLElement {
 
 
             const count = document.createElement("input");
-            count.id = `count-${lessonData.id}`;
+            count.id = `count-${materialData.id}`;
             count.classList = ("textarea-entities d-flex justify-content-center align-items-center");
             count.style.width = "100px";
             count.style.height = "25px";
@@ -72,17 +73,6 @@ export default class LessonController extends HTMLElement {
 
         this.appendChild(this.container);
     }
-
-    /*async getSelectedValues (lessonController){
-        const selected = [];
-        //console.log(this.container);
-        lessonController.querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
-            console.log(cb)
-            selected.push(cb.value);
-        });
-        //console.log(selected);
-        return selected;
-    };*/
     
     async createConnect(lessonId, circleId, countInput) {
         let usersData = JSON.parse(sessionStorage.getItem("usersData")); 
@@ -111,4 +101,4 @@ export default class LessonController extends HTMLElement {
     }
 }
 
-customElements.define("lessons-container", LessonController);
+customElements.define("material-circle-container", MaterialCircleController);

@@ -37,12 +37,15 @@ export default class CircleController extends HTMLElement {
     }
 
     //тут поменять на id worker
-    async createCircle(name, description) {
+    async createCircle(circleId, name, description, circleMaterials) {
         let usersData = JSON.parse(sessionStorage.getItem("usersData"));
+        alert("name " + name)
         const data = {
+            Id: circleId,
             StorekeeperId: usersData.id,
             CircleName: name,
-            Description: description
+            Description: description,
+            Materials: circleMaterials
         };
 
         let resp = await this.model.createCircle(usersData.id, usersData.token, data);

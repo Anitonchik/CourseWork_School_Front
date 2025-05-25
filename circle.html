@@ -9,10 +9,10 @@
 </head>
 <body class="background">
     <div class="d-flex flex-row justify-content-between align-items-center">
-        <div class="d-flex flex-row gap-3 ms-5">
+        <a href="mainMenu.html" class="d-flex flex-row gap-3" style=" text-decoration: none;">
             <div class="milligram-beige-font-bold" style="font-size: 40px;">Школа</div>
             <div class="handWrite-green-font" style="font-size: 40px;">Опять учиться</div>
-        </div>
+        </a>
         <menu-header class="me-5"></menu-header>
     </div>
 
@@ -31,6 +31,12 @@
                     </div>
                 </div>
 
+                <div class="d-flex flex-row justify-content-between align-items-center" style="margin: 15px 0px 15px 0px;">
+                    <div>Выберите материалы</div>
+                    <!--<select id="materialSelect" class="form-select" style="width: 175px; background-color: #31313145;"></select>-->
+                    <material-circle-container></material-circle-container>
+                </div>
+
                 <div class="text-center">
                     <button id="createCircleButton" class="entities-button" style="width: 370px;">Создать кружок</button> 
                 </div>
@@ -44,10 +50,17 @@
                 <p class="handWrite-purple-font d-flex justify-content-center" style="font-size: 25px;">Создать связь</p>
                 <div class="d-flex flex-row justify-content-between">
                     <div style="height: 50%;">
-                        <lessons-container></lessons-container>
+                        <lessons-container style="height: 50px;"></lessons-container>
                     </div>
                     <div>
-                        <p id="connectEntities" class="textarea-entities d-flex justify-content-center align-items-center" name="userNameTextarea" style="width: 150px;"></p>
+                        <div>
+                            <p>Название кружка</p>
+                            <p id="connectEntities" class="textarea-entities d-flex justify-content-center align-items-center" name="userNameTextarea" style="width: 150px;"></p>
+                        </div>
+                        <!--<div class="mb-3">
+                            <p>Количество занятий</p>
+                            <input id="countToConnectEntities" class="textarea-entities d-flex justify-content-center align-items-center" name="userNameTextarea" style="width: 150px; height: 30px;"></input>
+                        </div>-->
                         <button id="createConnectCircleButton" class="entities-button" style="width: 150px;">Связать</button> 
                     </div>
                 </div>
