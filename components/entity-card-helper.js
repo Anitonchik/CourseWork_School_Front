@@ -2,7 +2,7 @@ import {takeDataToUpdateCircleInTextarea} from '../scripts/scriptCircle.js'
 import { takeDataToUpdateMaterialInTextarea } from '../scripts/scriptMaterial.js';
 import {takeIdToConnectEntities} from '../scripts/scriptCircle.js'
 
-function createCardEntity(controller, entityId, type, name, description) {
+function createCardEntity(controller, entityId, type, name, description, materials = [], lessons = []) {
     console.log(name)
     const entityContainer = document.createElement("div");
     entityContainer.className = "container-white-card";
@@ -10,6 +10,70 @@ function createCardEntity(controller, entityId, type, name, description) {
 
     entityContainer.appendChild(createTextBlock("Название:", name));
     entityContainer.appendChild(createTextBlock("Описание:", description));
+
+    /*для кружка -------------------------------------------------------------------------------------------------*/
+    
+    const materialsBlock = document.createElement("div");
+    materialsBlock.classList = ("d-flex flex-column");
+
+    const labelMaterials = document.createElement("label");
+    labelMaterials.className = "dark-font-less";
+    labelMaterials.textContent = "Материалы:";
+
+    materialsBlock.appendChild(labelMaterials);
+
+    if (materials.length > 0) {
+
+        const ulMaterials = document.createElement("ul");
+        ulMaterials.style.listStyle = "none";
+        materials.forEach(material => {
+            const li = document.createElement("li");
+            li.className = "handWrite-dark-font";
+            li.style.fontSize = "24px";
+            li.textContent = material.materialName;
+            ulMaterials.appendChild(li);
+        });
+        materialsBlock.appendChild(ulMaterials);     
+    }
+    else {
+        const ulMaterials = document.createElement("p");
+        ulMaterials.textContent = "___";
+        materialsBlock.appendChild(ulMaterials);
+    }
+    entityContainer.appendChild(materialsBlock);
+
+
+
+    const lessonsBlock = document.createElement("div");
+    lessonsBlock.classList = ("d-flex flex-column");
+
+    const labelLessons = document.createElement("label");
+    labelLessons.className = "dark-font-less";
+    labelLessons.textContent = "Занятия:";
+
+    lessonsBlock.appendChild(labelLessons);
+
+    if (lessons.length > 0) {
+
+        const ulLessons = document.createElement("ul");
+        ulLessons.style.listStyle = "none";
+        lessons.forEach(lesson => {
+            const li = document.createElement("li");
+            li.className = "handWrite-dark-font";
+            li.style.fontSize = "24px";
+            li.textContent = lesson;
+            ulLessons.appendChild(li);
+        });
+        materialsBlock.appendChild(ulLessons);     
+    }
+    else {
+        const ulLessons = document.createElement("p");
+        ulLessons.textContent = "___";
+        lessonsBlock.appendChild(ulLessons);
+    }
+    entityContainer.appendChild(lessonsBlock);
+
+    /*------------------------------------------------------------------------------------------------------------ */
 
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "d-flex gap-3 mt-3";

@@ -93,13 +93,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const circleId = circleCard.getAttribute("circle-id");
+        alert("circleId " + circleId)
         const controllers = document.getElementsByTagName("lessons-container");
 
         if (controllers.length > 0) {
             const controller = controllers[0];
 
             controller.querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
+                console.log(cb)
                 const lessonId = cb.getAttribute("data-lesson-id");
+                alert("lessonId " + lessonId)
                 const countInput = document.getElementById(`count-${lessonId}`).value;
                 
                 if (countInput) {

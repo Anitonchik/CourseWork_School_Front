@@ -44,6 +44,7 @@ export default class LessonController extends HTMLElement {
             checkbox.type = "checkbox";
             checkbox.value = lessonData.lessonName;
             checkbox.setAttribute("data-lesson-id", `${lessonData.id}`);
+            console.log(checkbox.getAttribute("data-lesson-id"))
             checkbox.id = `chk-${lessonData.id}`;
 
             const label = document.createElement("label");

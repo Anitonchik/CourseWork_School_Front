@@ -16,8 +16,9 @@ export default class CircleView {
             this.data.id,
             type,
             this.data.circleName,
-            this.data.description
-        );
+            this.data.description,
+            this.data.materials
+        );  
     }
 
     async loadMaterials(data, controller) {
