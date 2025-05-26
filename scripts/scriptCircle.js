@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 const textareaName = document.getElementById("textareaName");
 const textareaDesc = document.getElementById("textareaDesc");
-const materialSelect = document.getElementById("materialSelect");
 
 let controller = null;
 let lessonController = null;
@@ -20,8 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     controller = new CircleController();
     lessonController = new LessonController();
     let materialCircleController = new MaterialCircleController();
-
-    loadMaterials();
 });
 
 
