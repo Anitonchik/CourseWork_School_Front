@@ -40,6 +40,7 @@ export default class MaterialCircleController extends HTMLElement {
             block.classList = ("d-flex flex-row gap-2")
 
             const wrapper = document.createElement("div");
+            wrapper.classList = ("d-flex text-align-centre")
 
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
@@ -49,10 +50,12 @@ export default class MaterialCircleController extends HTMLElement {
 
             const label = document.createElement("label");
             label.setAttribute("for", checkbox.id);
-            label.classList = "text-nowrap";
             label.textContent = materialData.materialName;
+            label.style.whiteSpace = "normal"; 
+            label.style.overflow = "hidden";
             label.style.marginLeft = "5px";
             label.style.width = "60px";
+            label.style.maxWidth = "70px";
             
             wrapper.appendChild(checkbox);
             wrapper.appendChild(label);

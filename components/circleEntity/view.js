@@ -1,4 +1,4 @@
-import { createCardEntity } from '../entity-card-helper.js'
+import {createCircleCard} from '../entitiesCardHelper/circle-card-helper.js'
 
 export default class CircleView {
 
@@ -11,7 +11,7 @@ export default class CircleView {
         if (!this.data) return;
         let type = "circle";
 
-        createCardEntity(
+        createCircleCard(
             circleController,
             this.data.id,
             type,

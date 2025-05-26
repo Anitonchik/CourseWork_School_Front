@@ -57,23 +57,15 @@ export default class CircleController extends HTMLElement {
         
     }
 
-    async updateCircle(circleId, name, desc) {
+    async updateCircle(circleId, name, desc, materials) {
         let usersData = JSON.parse(sessionStorage.getItem("usersData"));
-
-        /*const index = this.viewModels.findIndex(vm => vm.data.id == circleId);
-        alert("index " + index)
-        if (index !== -1) {
-            const viewModel = this.viewModels[index];
-
-            viewModel.data.circleName = name;
-            viewModel.data.description = desc;
-        }*/
 
         const data = {
             Id: circleId,
             StorekeeperId: usersData.id,
             CircleName: name,
-            Description: desc
+            Description: desc,
+            Materials: materials
         };
 
         await this.model.update(usersData.token, data);

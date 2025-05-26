@@ -1,4 +1,4 @@
-import { createCardEntity } from '../entity-card-helper.js'
+import { createMaterialCard } from '../entitiesCardHelper/material-card-helper.js'
 
 export default class MaterialView {
 
@@ -11,7 +11,7 @@ export default class MaterialView {
         if (!this.data) return;
         let type = "material";
 
-        createCardEntity(
+        createMaterialCard(
             MaterialController,
             this.data.id,
             type,

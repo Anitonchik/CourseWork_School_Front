@@ -1,8 +1,8 @@
-import {takeDataToUpdateCircleInTextarea} from '../scripts/scriptCircle.js'
-import { takeDataToUpdateMaterialInTextarea } from '../scripts/scriptMaterial.js';
-import {takeIdToConnectEntities} from '../scripts/scriptCircle.js'
+import {takeDataToUpdateCircleInTextarea} from '../../scripts/scriptCircle.js'
+import { takeDataToUpdateMaterialInTextarea } from '../../scripts/scriptMaterial.js';
+import {takeIdToConnectEntities} from '../../scripts/scriptCircle.js'
 
-function createCardEntity(controller, entityId, type, name, description, materials = [], lessons = []) {
+function createCircleCard(controller, entityId, type, name, description, materials = [], lessons = []) {
     console.log(name)
     const entityContainer = document.createElement("div");
     entityContainer.className = "container-white-card";
@@ -10,8 +10,6 @@ function createCardEntity(controller, entityId, type, name, description, materia
 
     entityContainer.appendChild(createTextBlock("Название:", name));
     entityContainer.appendChild(createTextBlock("Описание:", description));
-
-    /*для кружка -------------------------------------------------------------------------------------------------*/
     
     const materialsBlock = document.createElement("div");
     materialsBlock.classList = ("d-flex flex-column");
@@ -28,7 +26,8 @@ function createCardEntity(controller, entityId, type, name, description, materia
         ulMaterials.style.listStyle = "none";
         materials.forEach(material => {
             const li = document.createElement("li");
-            li.className = "handWrite-dark-font";
+            li.classList = "handWrite-dark-font text-nowrap";
+            li.style.whiteSpace = "nowrap";
             li.style.fontSize = "24px";
             li.textContent = material.materialName;
             ulMaterials.appendChild(li);
@@ -57,6 +56,7 @@ function createCardEntity(controller, entityId, type, name, description, materia
 
         const ulLessons = document.createElement("ul");
         ulLessons.style.listStyle = "none";
+        ulLessons.classList = "text-nowrap";
         lessons.forEach(lesson => {
             const li = document.createElement("li");
             li.className = "handWrite-dark-font";
@@ -73,36 +73,24 @@ function createCardEntity(controller, entityId, type, name, description, materia
     }
     entityContainer.appendChild(lessonsBlock);
 
-    /*------------------------------------------------------------------------------------------------------------ */
 
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "d-flex gap-3 mt-3";
 
     const updateButton = createButton("bi bi-pencil", "Изменить");
     updateButton.addEventListener("click", () => {
-        if (type === "circle") {
-            takeDataToUpdateCircleInTextarea(controller, entityId, name, description);
-        }
-        else if (type === "material") {
-            takeDataToUpdateMaterialInTextarea(controller, entityId, name, description);
-        }
-        document.getElementById("fields").scrollIntoView({
-            behavior: "smooth"
-          });
+        takeDataToUpdateCircleInTextarea(controller, entityId, name, description, materials);
     });
     
 
     const deleteButton = createButton("bi bi-trash", "Удалить");
     deleteButton.addEventListener("click", () => {
-        if (type === "circle") {
-            controller.deleteCircle(entityId)
-        }
-        else if (type === "material") {
-            controller.deleteMaterial(entityId)
-        }
+        controller.deleteCircle(entityId)
     });
     
+    
     buttonContainer.appendChild(updateButton);
+
     buttonContainer.appendChild(deleteButton);
 
     if (type === "circle") {
@@ -161,4 +149,4 @@ const createButton = (iconClass, text) => {
     return button;
 };
 
-export {createCardEntity};
+export {createCircleCard};

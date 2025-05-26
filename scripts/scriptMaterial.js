@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const createMaterialButton = document.getElementById("createMaterialButton");
     createMaterialButton.addEventListener("click", function (e) {
+        e.preventDefault();
+        
         const name = textareaName.value.trim();
         const description = textareaDesc.value.trim();
         controller.createMaterial(name, description);

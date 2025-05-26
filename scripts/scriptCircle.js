@@ -42,16 +42,57 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+
+/* update ----------------------------------------------------------------------------------------------------------*/
 document.addEventListener("DOMContentLoaded", () => {
     
     const updateCircleButton = document.getElementById("updateCircleButton");
-    updateCircleButton.addEventListener("click", function (e) {
+    updateCircleButton.addEventListener("click", async function (e) {
+        e.preventDefault();
+
         const name = textareaName.value.trim();
         const description = textareaDesc.value.trim();
-        
-        controller.updateCircle(circleId, name, description);
+
+
+        const controllers = document.getElementsByTagName("material-circle-container");
+
+        let materials = [];
+
+        if (controllers.length > 0) {
+            const controller = controllers[0];
+            controller.querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
+                const materialId = cb.getAttribute("data-material-id");
+                const countInput = document.getElementById(`count-${materialId}`).value;
+                
+                if (countInput) {
+                    if (countInput <= 0) {
+                        alert("Количество материалов не может быть меньше или равным 0")
+                        return;
+                    }
+
+                    materials.push({
+                        CircleId: circleId,
+                        MaterialId: materialId,
+                        Count: countInput
+                    })
+
+                } else {
+                    console.warn(`Не найден input для materialId: ${materialId}`);
+                } 
+            });
+        }
+
+        controller.updateCircle(circleId, name, description, materials);
         textareaName.value = "";
         textareaDesc.value = "";
+
+        controllers[0].querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
+            const materialId = cb.getAttribute("data-material-id");
+            const countInput = document.getElementById(`count-${materialId}`).value;
+            
+            cb.checked = false;
+            countInput.value = "0";
+        });
 
     });
 });
@@ -100,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const controller = controllers[0];
 
             controller.querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
-                console.log(cb)
+
                 const lessonId = cb.getAttribute("data-lesson-id");
                 alert("lessonId " + lessonId)
                 const countInput = document.getElementById(`count-${lessonId}`).value;
@@ -169,12 +210,38 @@ function takeIdToConnectEntities(id, circleName) {
       });
 }
 
-function takeDataToUpdateCircleInTextarea(binController, id, name, desc) {
+function takeDataToUpdateCircleInTextarea(binController, id, name, desc, materials) {
     controller = binController;
     circleId = id;
 
     textareaName.textContent = name;
     textareaDesc.textContent = desc;
+
+    const controllers = document.getElementsByTagName("material-circle-container");
+
+        if (controllers.length > 0) {
+            const controller = controllers[0];
+            
+            controller.querySelectorAll("input[type=checkbox]").forEach(cb => {
+                cb.checked = false;
+                const materialId = cb.getAttribute("data-material-id");
+                const countInput = document.getElementById(`count-${materialId}`);
+                countInput.value = 0;
+
+
+                const materialName = cb.value;
+                const material = materials.find(m => m.materialName === materialName);
+                
+
+                if (material) {
+                    cb.checked = true;
+
+                    if (countInput) {
+                        countInput.value = material.count;
+                    }
+                }
+            });
+        }
 
     const updateCircleButton = document.getElementById("updateCircleButton");
     updateCircleButton.classList.add('show');
