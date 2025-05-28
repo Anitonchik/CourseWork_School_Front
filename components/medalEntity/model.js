@@ -1,14 +1,13 @@
 import axios from "axios";
 
-export default class MaterialModel { 
+export default class MedalModel { 
     constructor() {
         this.data = [];
     }
 
     async getAll(userId, token) {
-        //alert("MODEL getall model token " + token);
         try {
-            var response = await axios.get(`https://localhost:7235/api/materials/getallrecords`, {
+            var response = await axios.get(`https://localhost:7235/api/medals/getallrecords/getallrecords`, {
                 params: { storekeeperId: userId }, 
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -27,11 +26,10 @@ export default class MaterialModel {
     } 
 
 
-    async createMaterial(userId, token, data) {
-        alert(JSON.stringify(data))
+    async createMedal(userId, token, data) {
         try {
-            alert("model")
-            var response = await axios.post(`https://localhost:7235/api/Materials`, data, {
+            alert(JSON.stringify(data))
+            var response = await axios.post(`https://localhost:7235/api/Medals/register/register`, data, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
@@ -49,7 +47,7 @@ export default class MaterialModel {
 
     async update(token, data) {
         try {
-            const response = await axios.put(`https://localhost:7235/api/Materials`, data, {
+            const response = await axios.put(`https://localhost:7235/api/Medals/changeinfo/changeinfo`, JSON.stringify(data), {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
@@ -61,9 +59,9 @@ export default class MaterialModel {
         }
     }
 
-    async delete(storekeeperId, token, MaterialId) {
+    async delete(storekeeperId, token, MedalId) {
         try{
-            const response = await axios.delete(`https://localhost:7235/api/Materials/${MaterialId}`, {
+            const response = await axios.delete(`https://localhost:7235/api/Medals/delete/${MedalId}`, {
                 params: {
                     storekeeperId: storekeeperId
                 },

@@ -41,7 +41,7 @@ export default class MaterialController extends HTMLElement {
     //тут поменять на id worker
     async createMaterial(name, description) {
         let usersData = JSON.parse(sessionStorage.getItem("usersData"));
-        alert("controller name " + name);
+        alert(JSON.stringify(usersData))
         const data = {
             StorekeeperId: usersData.id,
             MaterialName: name,
@@ -57,22 +57,13 @@ export default class MaterialController extends HTMLElement {
     async updateMaterial(MaterialId, name, desc) {
         let usersData = JSON.parse(sessionStorage.getItem("usersData"));
 
-        /*const index = this.viewModels.findIndex(vm => vm.data.id == MaterialId);
-        alert("index " + index)
-        if (index !== -1) {
-            const viewModel = this.viewModels[index];
-
-            viewModel.data.MaterialName = name;
-            viewModel.data.description = desc;
-        }*/
-
         const data = {
-            Id: MaterialId,
-            StorekeeperId: usersData.id,
-            MaterialName: name,
-            Description: desc
+            id: MaterialId,
+            storekeeperId: usersData.id,
+            materialName: name,
+            description: desc
         };
-
+        
         await this.model.update(usersData.token, data);
         await this.loadMaterials();
     }

@@ -1,14 +1,14 @@
-import {takeDataToUpdateCircleInTextarea} from '../../scripts/scriptCircle.js'
-import { takeDataToUpdateMaterialInTextarea } from '../../scripts/scriptMaterial.js';
-import {takeIdToConnectEntities} from '../../scripts/scriptCircle.js'
+import { takeDataToUpdateMedalInTextarea } from "../../scripts/scriptMedal";
 
-function createMaterialCard(controller, entityId, name, description) {
+function createMedalCard(controller, entityId, name, materialName, range, description) {
     console.log(name)
     const entityContainer = document.createElement("div");
     entityContainer.className = "container-white-card";
-    entityContainer.id = `material-${entityId}`;
+    entityContainer.id = `medal-${entityId}`;
 
     entityContainer.appendChild(createTextBlock("Название:", name));
+    entityContainer.appendChild(createTextBlock("Материал:", materialName));
+    entityContainer.appendChild(createTextBlock("Занятое место:", range));
     entityContainer.appendChild(createTextBlock("Описание:", description));
 
 
@@ -17,13 +17,13 @@ function createMaterialCard(controller, entityId, name, description) {
 
     const updateButton = createButton("bi bi-pencil", "Изменить");
     updateButton.addEventListener("click", () => {
-        takeDataToUpdateMaterialInTextarea(controller, entityId, name, description);
+        takeDataToUpdateMedalInTextarea(controller, entityId, name, description);
     });
     
 
     const deleteButton = createButton("bi bi-trash", "Удалить");
     deleteButton.addEventListener("click", () => {
-        controller.deleteMaterial(entityId)
+        controller.deleteMedal(entityId)
     });
     
     buttonContainer.appendChild(updateButton);
@@ -77,4 +77,4 @@ const createButton = (iconClass, text) => {
     return button;
 };
 
-export {createMaterialCard};
+export {createMedalCard};

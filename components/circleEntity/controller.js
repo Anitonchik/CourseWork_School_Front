@@ -49,9 +49,6 @@ export default class CircleController extends HTMLElement {
         };
 
         let resp = await this.model.createCircle(usersData.id, usersData.token, data);
-        /*const viewModel = new CircleView(data, this);
-        viewModel.render(this);
-        this.viewModels.push(viewModel);*/
 
         await this.loadCircles();
         

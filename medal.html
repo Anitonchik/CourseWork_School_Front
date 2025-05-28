@@ -22,8 +22,16 @@
                 <p class="handWrite-purple-font d-flex justify-content-center" style="font-size: 25px;">Создать сущность</p>
                 <div id="fields">
                     <div class="d-flex flex-row justify-content-between" style="margin: 10px 0px 10px 0px;">
-                        <div class="">Название материала</div>
+                        <div class="">Название медали</div>
                         <textarea id="textareaName" class="textarea-entities" name="userNameTextarea"></textarea>
+                    </div>
+                    <div class="d-flex flex-row" style="margin: 15px 0px 15px 0px;">
+                        <div>Материал</div>
+                        <select id="materialSelect" class="form-select"></select>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between" style="margin: 10px 0px 10px 0px;">
+                        <div class="">Занятое место</div>
+                        <textarea id="textareaRange" class="textarea-entities" name="userNameTextarea"></textarea>
                     </div>
                     <div class="d-flex flex-row justify-content-between" style="margin: 10px 0px 10px 0px;">
                         <div class="">Описание</div>
@@ -32,11 +40,11 @@
                 </div>
 
                 <div class="text-center">
-                    <button id="createMaterialButton" class="entities-button" style="width: 370px;">Создать материал</button> 
+                    <button id="createMedalButton" class="entities-button" style="width: 370px;">Создать медаль</button> 
                 </div>
 
                 <div class="text-center ">
-                    <button id="updateMaterialButton" class="entities-button" style="width: 370px;">Обновить материал</button> 
+                    <button id="updateMedalButton" class="entities-button" style="width: 370px;">Обновить медаль</button> 
                 </div>
             </div>
             
@@ -44,18 +52,16 @@
 
         <div class="d-flex flex-row gap-3">
             <div class="d-flex flex-column justify-content-center align-items-center">
+                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 45px;">Ь</span>
                 <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 45px;">Л</span>
                 <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 45px;">А</span>
-                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 45px;">И</span>
-                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 45px;">Р</span>
+                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 45px;">Д</span>
                 <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 45px;">Е</span>
-                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 45px;">Т</span>
-                <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 45px;">А</span>
                 <span class="milligram-beige-font-bold" style="transform: rotate(-90deg); display: block; color: #f9ffe9a8; font-size: 45px;">М</span>
             </div>
-            <materials-container class="entites-list me-5"></materials-container>
+            <medals-container class="entites-list me-5"></medals-container>
         </div>
     </div>
 </body>
-<script type="module" src="./scripts/scriptMaterial.js"></script>
+<script type="module" src="./scripts/scriptMedal.js"></script>
 </html>

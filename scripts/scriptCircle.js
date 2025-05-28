@@ -94,36 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-/*создание связи многие-ко-многим кружка и материала ----------------------------------------------------------------------------*/
-/*async function loadMaterials() {
-    try {
-        const usersData = JSON.parse(sessionStorage.getItem("usersData"));
-        var response = await axios.get(`https://localhost:7235/api/materials/getallrecords`, {
-            params: { storekeeperId: usersData.id }, 
-            headers: {
-                "Authorization": `Bearer ${usersData.token}`,
-                "Content-Type": "application/json"
-            }
-        });
-        
-        materialSelect.innerHTML = '<option class="" value="">Выберите материал</option>';
-        response.data.forEach(material => {
-            const option = document.createElement("option");
-            option.value = material.id;
-            option.textContent = material.materialName;
-            materialSelect.appendChild(option);
-        });
-    } catch (error) {
-        console.error("Ошибка при загрузке занятий:", error);
-    }
-}
-
-/*--------------------------------------------------------------------------------------------------------------------------------*/
-
 document.addEventListener("DOMContentLoaded", () => {
     const createConnectCircleButton = document.getElementById("createConnectCircleButton");
     const circleCard = document.getElementById("connectEntities");
     createConnectCircleButton.addEventListener("click", function (e) {
+        e.preventDefault();
 
         if (circleCard.textContent === "") {
             alert("выберите кружок");
@@ -132,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const circleId = circleCard.getAttribute("circle-id");
         alert("circleId " + circleId)
+        console.log("Назначаем обработчик кнопки createConnectCircleButton");
         const controllers = document.getElementsByTagName("lessons-container");
 
         if (controllers.length > 0) {

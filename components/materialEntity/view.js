@@ -8,13 +8,10 @@ export default class MaterialView {
     } 
 
     render(MaterialController) {
-        if (!this.data) return;
-        let type = "material";
 
         createMaterialCard(
             MaterialController,
             this.data.id,
-            type,
             this.data.materialName,
             this.data.description
         );
