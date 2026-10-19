@@ -68,7 +68,7 @@ Vite поднимет dev-сервер (по умолчанию `http://localhos
 # Собрать проект (результат в папке dist/)
 npm run build
 
-# Собрать и сразу запустить на http://localhost:3000
+# Собрать и сразу запустить на http://localhost:5173
 npm run prod
 ```
 
@@ -76,7 +76,7 @@ npm run prod
 
 ```bash
 npm run build   # сборка в dist/
-npm run serve   # раздача dist/ через http-server на порту 3000
+npm run serve   # раздача dist/ через http-server на порту 5173
 ```
 
 ### Линтинг
@@ -92,7 +92,7 @@ npm run lint
 Адрес бэкенда задаётся в коде/конфиге фронтенда (базовый URL для Axios):
 
 ```js
-const API_URL = 'http://localhost:5000/api';
+const URL = "http://localhost:5281/";
 ```
 
 ---
@@ -103,7 +103,7 @@ const API_URL = 'http://localhost:5000/api';
 |-----------------|-------------------------------------------------|
 | `npm start`     | запуск dev-сервера Vite                         |
 | `npm run build` | сборка production-версии в `dist/`              |
-| `npm run serve` | раздача `dist/` через http-server на порту 3000 |
+| `npm run serve` | раздача `dist/` через http-server на порту 5173 |
 | `npm run prod`  | сборка + раздача (`build` + `serve`)            |
 | `npm run lint`  | проверка кода ESLint                            |
 
